@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="sustainableapps.coursera.org.loginactivity.LoginActivity">
+
+    <!-- Вертикальный guideline с относительным отступом 25% -->
+    <android.support.constraint.Guideline
+        android:id="@+id/line_1"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <!-- Вертикальный guideline с отступом 50dp от правой стороны ConstraintLayout -->
+    <android.support.constraint.Guideline
+        android:id="@+id/line_2"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="75dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <!-- Горизонтальный guideline с отступом 50dp от верхней стороны ConstraintLayout -->
+    <android.support.constraint.Guideline
+        android:id="@+id/line_top"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintTop_toTopOf="@+id/line_top"
+        app:layout_constraintLeft_toLeftOf="@+id/line_1"
+        app:layout_constraintRight_toRightOf="@+id/line_2"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        app:layout_constraintLeft_toLeftOf="@+id/line_1"
+        app:layout_constraintRight_toRightOf="@+id/line_2" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onLoginButtonClick"
+        android:text="@string/login"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintLeft_toLeftOf="@+id/line_1"
+        app:layout_constraintRight_toRightOf="@+id/line_2"/>
+
+</android.support.constraint.ConstraintLayout>
