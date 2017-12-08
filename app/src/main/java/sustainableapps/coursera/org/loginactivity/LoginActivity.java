@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
 
@@ -13,7 +14,7 @@ public class LoginActivity extends Activity {
 
     /**
      * Debugging tag used by the Android logger.
-     * In the code I had to shove Lod.d into try / catch,
+     * In the code I had to shove Lod.d's into try / catch,
      * so that UnitTest could get around them and not give an error.
      */
     public static final String TAG = LoginActivity.class.getName();
@@ -22,7 +23,9 @@ public class LoginActivity extends Activity {
     /**
      * Hook method called when a new instance of Activity is created.
      *
-     * @param savedInstanceState
+     * @param savedInstanceState **A Bundle object that contains the state
+     *                           of the user interface stored in the last call
+     *                           of the onSaveInstanceState handler.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +36,9 @@ public class LoginActivity extends Activity {
     // ============= CHECKING PASSWORD =============
 
     /**
-     * The method returns true if the password length is > 8,
-     * else make toast with a message "The provided password is too short"
+     * The method returns true if the password length is > 8.
      *
-     * @param pass
+     * @param pass **This is parameter passed to the method as a string with a password.
      * @return true/false
      */
     public boolean passwordLength(String pass){
@@ -49,21 +51,19 @@ public class LoginActivity extends Activity {
     }
 
     /**
-     * The method returns true if the password contains all spaces and
-     * make a toast with a message "The provided password is invalid",
-     * else returns false.
+     * The method returns true if the password contains all spaces.
      *
-     * @param pass
+     * @param pass1 **This is parameter passed to the method as a string with a password.
      * @return true/false
      */
-    public boolean isPassAllSpaces(String pass){
+    public boolean isPassAllSpaces(String pass1){
         try {
             Log.d(TAG, "=== isPassAllSpaces checking ===");
         } catch (Exception e) {
             // Ignore
         }
 
-        return (pass.replace(" ", "").equals(""));
+        return (pass1.replace(" ", "").equals(""));
     }
 
     // ============= CHECKING EMAIL ADDRESS =============
@@ -71,7 +71,7 @@ public class LoginActivity extends Activity {
      * This method checks if the provided string represents a
      * valid email address and returns true if it is.
      *
-     * @param email
+     * @param email **This is parameter passed to the method as a string with a email.
      * @return true/false
      */
     public boolean isAtSignInEmailAddress(String email) {
@@ -89,7 +89,7 @@ public class LoginActivity extends Activity {
      * which is the part that comes before "@" in the address,
      * is more >= 1.
      *
-     * @param email
+     * @param email **This is parameter passed to the method as a string with a email.
      * @return true/false
      */
     public boolean isOneCharBeforeAt(String email){
@@ -109,7 +109,7 @@ public class LoginActivity extends Activity {
      * This method returns true if email address has at least 3 characters,
      * including a "." after the "@" sign.
      *
-     * @param email
+     * @param email **This is parameter passed to the method as a string with a email.
      * @return true/false
      */
     public boolean isThreeCharAfterAtSign(String email){
@@ -126,7 +126,8 @@ public class LoginActivity extends Activity {
 
     /**
      * The method shows toast in the center of display.
-     * @param toastString
+     * @param toastString **This is parameter passed to the method
+     *                    as a string with a toast message..
      */
     public void showToast(final String toastString){
         Context context = LoginActivity.this;
@@ -152,7 +153,8 @@ public class LoginActivity extends Activity {
      * It checks EMAIL and PASSWORD and call showToast
      * to display appropriate message.
      *
-     * @param view
+     * @param view **This is View object which represents
+     *             the basic building block for user interface components.
      */
     public void onLoginButtonClick(View view) {
 
@@ -169,13 +171,13 @@ public class LoginActivity extends Activity {
         if (!isAtSignInEmailAddress(EMAIL) ||
                 !isOneCharBeforeAt(EMAIL) ||
                 !isThreeCharAfterAtSign(EMAIL)) {
-            showToast("Invalid email address");
+            showToast(getResources().getString(R.string.addrInvalid));
         } else if (!isPassAllSpaces(PASSWORD) && passwordLength(PASSWORD)) {
-            showToast("Login success");
+            showToast(getResources().getString(R.string.success));
         } if (isPassAllSpaces(PASSWORD)) {
-            showToast("The provided password is invalid");
+            showToast(getResources().getString(R.string.passInavlid));
         } if (!passwordLength(PASSWORD)) {
-            showToast("The provided password is too short");
+            showToast(getResources().getString(R.string.tooShort));
         }
     }
 }
