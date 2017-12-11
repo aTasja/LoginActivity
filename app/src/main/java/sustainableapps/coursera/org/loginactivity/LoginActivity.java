@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -156,7 +157,7 @@ public class LoginActivity extends Activity {
      * @param view **This is View object which represents
      *             the basic building block for user interface components.
      */
-    public void onLoginButtonClick(View view) {
+    public void onClick(View view) {
 
         Log.d(TAG, "=== BUTTON PRESSED   ===");
 
